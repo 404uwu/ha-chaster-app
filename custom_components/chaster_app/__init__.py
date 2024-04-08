@@ -24,7 +24,7 @@ PLATFORMS: list[Platform] = [Platform.BINARY_SENSOR, Platform.SENSOR, Platform.S
 _LOGGER = logging.getLogger(__name__)
 
 
-def setup(hass: HomeAssistant) -> bool:
+def setup(hass: HomeAssistant, config: ConfigType) -> bool:
     """Set up chaster.app."""
 
     async def handle_update_lock_duration(call: ServiceCall):
@@ -57,6 +57,8 @@ def setup(hass: HomeAssistant) -> bool:
             await hass.async_add_executor_job(
                 chaster_coordinator.chaster_client.update_lock_time, time_to_modify
             )
+
+            await chaster_coordinator.async_request_refresh()
         except NotPermitted as err:
             if err.args == "not permitted to remove time":
                 raise HomeAssistantError(
@@ -77,6 +79,7 @@ def setup(hass: HomeAssistant) -> bool:
             )
         ),
     )
+
     return True
 
 
