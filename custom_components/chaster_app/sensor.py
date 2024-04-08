@@ -41,7 +41,7 @@ class LockUnlockTimeSensor(CoordinatorEntity, SensorEntity):
     _attr_device_class = SensorDeviceClass.TIMESTAMP
 
     def __init__(
-        self, config_entry: ConfigEntry, coordinator: ChasterCoordinator
+        self, config_entry: ConfigEntry, coordinator: ChasterDataUpdateCoordinator
     ) -> None:
         super().__init__(coordinator)
 
@@ -67,7 +67,7 @@ class LockUnlockDurationSensor(CoordinatorEntity, SensorEntity):
     _attr_device_class = SensorDeviceClass.DURATION
 
     def __init__(
-        self, config_entry: ConfigEntry, coordinator: ChasterCoordinator
+        self, config_entry: ConfigEntry, coordinator: ChasterDataUpdateCoordinator
     ) -> None:
         super().__init__(coordinator)
 
@@ -96,7 +96,7 @@ class LockTotalLockedDurationSensor(CoordinatorEntity, SensorEntity):
     _attr_device_class = SensorDeviceClass.DURATION
 
     def __init__(
-        self, config_entry: ConfigEntry, coordinator: ChasterCoordinator
+        self, config_entry: ConfigEntry, coordinator: ChasterDataUpdateCoordinator
     ) -> None:
         super().__init__(coordinator)
 
