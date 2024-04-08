@@ -5,6 +5,7 @@ An unofficial Home Assistant Integration for [Chaster.app](https://chaster.app/)
 ## Features
 
 - Adds Data like "Total Time Locked", "Duration Until Unlock Time", "Is Lock Frozen", and more to Home Assistant
+- Exposes a service (`update_lock_duration`) to add time to the lock's duration (or remove time if you are the Keyholder)
 
 ## Setup
 
