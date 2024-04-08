@@ -48,6 +48,7 @@ class LockUnlockTimeSensor(CoordinatorEntity, SensorEntity):
 
         self.coordinator = coordinator
         self._attr_name = f"{config_entry.title} Unlock Date"
+        self._attr_unique_id = f"{config_entry.title}_unlock_date"
 
     @callback
     def _handle_coordinator_update(self) -> None:
@@ -75,6 +76,7 @@ class LockUnlockDurationSensor(CoordinatorEntity, SensorEntity):
 
         self.coordinator = coordinator
         self._attr_name = f"{config_entry.title} Duration Until Unlock Date"
+        self._attr_unique_id = f"{config_entry.title}_duration_until_unlock_date"
 
     @callback
     def _handle_coordinator_update(self) -> None:
@@ -105,6 +107,7 @@ class LockTotalLockedDurationSensor(CoordinatorEntity, SensorEntity):
 
         self.coordinator = coordinator
         self._attr_name = f"{config_entry.title} Total Locked Duration"
+        self._attr_unique_id = f"{config_entry.title}_total_locked_unlock"
 
     @callback
     def _handle_coordinator_update(self) -> None:

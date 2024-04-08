@@ -45,6 +45,7 @@ class LockIsFrozenSwitch(CoordinatorEntity, SwitchEntity):
 
         self.coordinator = coordinator
         self._attr_name = f"{config_entry.title} Is Timer Frozen"
+        self._attr_unique_id = f"{config_entry.title}_freeze"
 
     def turn_on(self, **kwargs: parser.Any) -> None:
         """Set Lock to Frozen."""

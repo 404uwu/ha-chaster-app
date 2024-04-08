@@ -34,6 +34,7 @@ class LockIsFrozenSensor(CoordinatorEntity, BinarySensorEntity):
     ) -> None:
         super().__init__(coordinator)
         self._attr_name = f"{config_entry.title} Frozen"
+        self._attr_unique_id = f"{config_entry.title}_frozen"
 
     @callback
     def _handle_coordinator_update(self) -> None:
