@@ -9,10 +9,11 @@ from dateutil import parser
 from homeassistant.components.sensor import SensorDeviceClass, SensorEntity
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, callback
+from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
-from .const import DOMAIN
+from .const import CONF_LOCK_ID, DOMAIN
 from .coordinator import ChasterDataUpdateCoordinator
 
 
@@ -49,6 +50,10 @@ class LockUnlockTimeSensor(CoordinatorEntity, SensorEntity):
         self.coordinator = coordinator
         self._attr_name = f"{config_entry.title} Unlock Date"
         self._attr_unique_id = f"{config_entry.title}_unlock_date"
+        self._attr_device_info = DeviceInfo(
+            identifiers={(DOMAIN, config_entry.data[CONF_LOCK_ID])},
+            name=config_entry.title,
+        )
 
     @callback
     def _handle_coordinator_update(self) -> None:
@@ -77,6 +82,10 @@ class LockUnlockDurationSensor(CoordinatorEntity, SensorEntity):
         self.coordinator = coordinator
         self._attr_name = f"{config_entry.title} Duration Until Unlock Date"
         self._attr_unique_id = f"{config_entry.title}_duration_until_unlock_date"
+        self._attr_device_info = DeviceInfo(
+            identifiers={(DOMAIN, config_entry.data[CONF_LOCK_ID])},
+            name=config_entry.title,
+        )
 
     @callback
     def _handle_coordinator_update(self) -> None:
@@ -110,6 +119,10 @@ class LockTotalLockedDurationSensor(CoordinatorEntity, SensorEntity):
         self.coordinator = coordinator
         self._attr_name = f"{config_entry.title} Total Locked Duration"
         self._attr_unique_id = f"{config_entry.title}_total_locked_unlock"
+        self._attr_device_info = DeviceInfo(
+            identifiers={(DOMAIN, config_entry.data[CONF_LOCK_ID])},
+            name=config_entry.title,
+        )
 
     @callback
     def _handle_coordinator_update(self) -> None:
