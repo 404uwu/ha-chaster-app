@@ -65,7 +65,7 @@ class LockUnlockTimeSensor(CoordinatorEntity, SensorEntity):
 class LockUnlockDurationSensor(CoordinatorEntity, SensorEntity):
     """Represents the time until the unlock date of the lock."""
 
-    _attr_native_unit_of_measurement = "s"
+    _attr_native_unit_of_measurement = "h"
     _attr_device_class = SensorDeviceClass.DURATION
     _attr_icon = "mdi:timer-sand-complete"
 
@@ -87,8 +87,10 @@ class LockUnlockDurationSensor(CoordinatorEntity, SensorEntity):
         else:
             parsed_end_date = parser.parse(end_date)
             self._attr_native_value = (
-                parsed_end_date - datetime.now(parsed_end_date.tzinfo)
-            ).seconds
+                (parsed_end_date - datetime.now(parsed_end_date.tzinfo)).seconds
+                / 60
+                / 60
+            )
 
         self.async_write_ha_state()
 
@@ -96,7 +98,7 @@ class LockUnlockDurationSensor(CoordinatorEntity, SensorEntity):
 class LockTotalLockedDurationSensor(CoordinatorEntity, SensorEntity):
     """Represents the total locked duration of the lock."""
 
-    _attr_native_unit_of_measurement = "ms"
+    _attr_native_unit_of_measurement = "h"
     _attr_device_class = SensorDeviceClass.DURATION
     _attr_icon = "mdi:timer"
 
@@ -112,7 +114,7 @@ class LockTotalLockedDurationSensor(CoordinatorEntity, SensorEntity):
     @callback
     def _handle_coordinator_update(self) -> None:
         """Handle updated data from the coordinator."""
-        total_duration_hours = self.coordinator.data["totalDuration"]
+        total_duration_hours = self.coordinator.data["totalDuration"] / 1000 / 60 / 60
         self._attr_native_value = total_duration_hours
 
         self.async_write_ha_state()
