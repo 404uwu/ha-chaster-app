@@ -1,0 +1,17 @@
+update_lock_duration:
+  name: "Update Lock Duration"
+  description: "Increases or Decreases the lock's duration until unlock by x minutes. Only Keyholders can decrease time."
+  fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: chaster_app
+    duration:
+      name: "Duration"
+      description: "The minutes to add (if it's a positive number) or subtract (if it's a negative number) from the lock's remaining duration."
+      default: 0
+      required: true
+      example: "60 or -60 (in minutes)"
+      selector:
+        number:

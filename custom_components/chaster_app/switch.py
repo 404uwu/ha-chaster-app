@@ -24,7 +24,7 @@ async def async_setup_entry(
 ) -> None:
     """Set up the switch platform."""
     chaster_coordinator: ChasterDataUpdateCoordinator = hass.data[DOMAIN][
-        config_entry.entry_id
+        config_entry.data[CONF_LOCK_ID]
     ]
 
     async_add_entities(
@@ -50,6 +50,7 @@ class LockIsFrozenSwitch(CoordinatorEntity, SwitchEntity):
         self._attr_device_info = DeviceInfo(
             identifiers={(DOMAIN, config_entry.data[CONF_LOCK_ID])},
             name=config_entry.title,
+            serial_number=config_entry.data[CONF_LOCK_ID],
         )
 
     def turn_on(self, **kwargs: parser.Any) -> None:

@@ -51,3 +51,25 @@ class ChasterClient:
             raise NotPermitted
 
         return freeze_request_response.json()
+
+    def update_lock_time(self, minutes_to_change: int):
+        "Add or remove time to the lock. Adds if minutes is positive, removes if minutes is negative."
+
+        update_time_request_response = requests.post(
+            f"{CHASTER_API_BASEURL}/locks/{self.lock_id}/update-time",
+            headers={"Authorization": f"Bearer {self.api_token}"},
+            timeout=30,
+            json={"duration": minutes_to_change * 60},
+        )
+
+        if update_time_request_response.status_code == 400:
+            # Only Keyholders are allowed to remove time
+            raise NotPermitted("not permitted to remove time")
+
+        if update_time_request_response.status_code == 401:
+            raise InvalidAuth
+
+        if update_time_request_response.status_code == 403:
+            raise NotPermitted
+
+        return True
