@@ -1,0 +1,16 @@
+{
+  "domain": "chaster_app",
+  "name": "chaster.app",
+  "codeowners": [
+    "@404uwu"
+  ],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "",
+  "homekit": {},
+  "iot_class": "cloud_polling",
+  "requirements": [],
+  "ssdp": [],
+  "zeroconf": [],
+  "version": "0.0.1"
+}
