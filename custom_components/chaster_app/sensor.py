@@ -39,6 +39,7 @@ class LockUnlockTimeSensor(CoordinatorEntity, SensorEntity):
     """Represents the unlock date of the lock."""
 
     _attr_device_class = SensorDeviceClass.TIMESTAMP
+    _attr_icon = "mdi:calendar-blank"
 
     def __init__(
         self, config_entry: ConfigEntry, coordinator: ChasterDataUpdateCoordinator
@@ -65,6 +66,7 @@ class LockUnlockDurationSensor(CoordinatorEntity, SensorEntity):
 
     _attr_native_unit_of_measurement = "s"
     _attr_device_class = SensorDeviceClass.DURATION
+    _attr_icon = "mdi:timer-sand-complete"
 
     def __init__(
         self, config_entry: ConfigEntry, coordinator: ChasterDataUpdateCoordinator
@@ -94,6 +96,7 @@ class LockTotalLockedDurationSensor(CoordinatorEntity, SensorEntity):
 
     _attr_native_unit_of_measurement = "ms"
     _attr_device_class = SensorDeviceClass.DURATION
+    _attr_icon = "mdi:timer"
 
     def __init__(
         self, config_entry: ConfigEntry, coordinator: ChasterDataUpdateCoordinator

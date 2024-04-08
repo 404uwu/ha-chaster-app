@@ -36,6 +36,7 @@ class LockIsFrozenSwitch(CoordinatorEntity, SwitchEntity):
     """Represents the frozen state of the lock."""
 
     _attr_device_class = SensorDeviceClass.TIMESTAMP
+    _attr_icon = "mdi:snowflake-check"
 
     def __init__(
         self, config_entry: ConfigEntry, coordinator: ChasterDataUpdateCoordinator

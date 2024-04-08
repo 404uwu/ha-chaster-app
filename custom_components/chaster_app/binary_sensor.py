@@ -27,11 +27,12 @@ async def async_setup_entry(
 class LockIsFrozenSensor(CoordinatorEntity, BinarySensorEntity):
     """Represents the frozen state of the lock."""
 
+    _attr_icon = "mdi:snowflake"
+
     def __init__(
         self, config_entry: ConfigEntry, coordinator: ChasterDataUpdateCoordinator
     ) -> None:
         super().__init__(coordinator)
-
         self._attr_name = f"{config_entry.title} Frozen"
 
     @callback
