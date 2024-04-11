@@ -97,11 +97,16 @@ class LockUnlockDurationSensor(CoordinatorEntity, SensorEntity):
             self._attr_native_value = None
         else:
             parsed_end_date = parser.parse(end_date)
-            self._attr_native_value = (
-                (parsed_end_date - datetime.now(parsed_end_date.tzinfo)).seconds
-                / 60
-                / 60
-            )
+            if parsed_end_date < datetime.now(parsed_end_date.tzinfo):
+                self._attr_native_value = 0
+            else:
+                self._attr_native_value = (
+                    (
+                        parsed_end_date - datetime.now(parsed_end_date.tzinfo)
+                    ).total_seconds()
+                    / 60
+                    / 60
+                )
 
         self.async_write_ha_state()
 
