@@ -18,7 +18,10 @@ Currently the integration is only usable via a personal token. For that you firs
 
 After you have developer access, go to the [developer interface](https://chaster.app/developers/applications) and **create an application**. Enter some name and leave the Redirect URI blank.
 
-Now when you go to your newly created application in the sidebar click on **"Tokens"**, where you can find or generate your personal token.
+Now when you go to your newly created application in the sidebar click on **"Tokens"**, where you can find or generate your "Developer token".
+
+> [!IMPORTANT]
+> Do not mistake the "secret key" for the "developer token". The developer token can be found in the left-hand sidebar under **"Tokens"**.
 
 The Lock ID can be found on Chaster in the Lock Settings' URL. If you go to your lock in Chaster and click on "Settings", the URL in your browser should look like "chaster.app/locks/abc123def456/settings". **In that case "abc123def456" would be your Lock ID.**
 
